@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.grey[700],
+        backgroundColor: Colors.grey[900],
         body: QuizApp(),
       ),
     );
@@ -26,6 +26,21 @@ class QuizApp extends StatefulWidget {
 }
 
 class _QuizAppState extends State<QuizApp> {
+  Icon addIcon(Color color) {
+    if (color == Colors.green) {
+      return Icon(
+        Icons.check,
+        color: Colors.green,
+      );
+    } else {
+      return Icon(
+        Icons.close,
+        color: Colors.red,
+      );
+    }
+  }
+
+  List<Icon> scoreKeeper = [];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -56,7 +71,11 @@ class _QuizAppState extends State<QuizApp> {
                   backgroundColor:
                       MaterialStateProperty.all<Color>(Colors.green),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  setState(() {
+                    scoreKeeper.add(addIcon(Colors.green));
+                  });
+                },
                 child: Text(
                   'True',
                   style: TextStyle(
@@ -74,7 +93,11 @@ class _QuizAppState extends State<QuizApp> {
                 style: ButtonStyle(
                     backgroundColor:
                         MaterialStateProperty.all<Color>(Colors.red)),
-                onPressed: () {},
+                onPressed: () {
+                  setState(() {
+                    scoreKeeper.add(addIcon(Colors.red));
+                  });
+                },
                 child: Text(
                   'False',
                   style: TextStyle(
@@ -84,7 +107,12 @@ class _QuizAppState extends State<QuizApp> {
                 ),
               ),
             ),
-            // Score Counter
+          ),
+          Padding(
+            padding: const EdgeInsets.all(9.0),
+            child: SafeArea(
+              child: Row(children: scoreKeeper),
+            ),
           ),
         ],
       ),
