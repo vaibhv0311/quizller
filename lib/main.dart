@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -41,6 +43,13 @@ class _QuizAppState extends State<QuizApp> {
   }
 
   List<Icon> scoreKeeper = [];
+  List<String> questions = [
+    'You can lead a cow down stairs but not up stairs.',
+    'Approximately one quarter of human bones are in the feet.',
+    'A slug\'s blood is green.'
+  ];
+  int questionNumber = 0;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -54,7 +63,8 @@ class _QuizAppState extends State<QuizApp> {
               padding: const EdgeInsets.all(10.0),
               child: Center(
                 child: Text(
-                  'This is where the text goes',
+                  questions[questionNumber],
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 30,
                     color: Colors.white,
@@ -73,6 +83,7 @@ class _QuizAppState extends State<QuizApp> {
                 ),
                 onPressed: () {
                   setState(() {
+                    questionNumber++;
                     scoreKeeper.add(addIcon(Colors.green));
                   });
                 },
@@ -95,7 +106,10 @@ class _QuizAppState extends State<QuizApp> {
                         MaterialStateProperty.all<Color>(Colors.red)),
                 onPressed: () {
                   setState(() {
-                    scoreKeeper.add(addIcon(Colors.red));
+                    if (questionNumber < questions.length) {
+                      questionNumber++;
+                      scoreKeeper.add(addIcon(Colors.red));
+                    } else {}
                   });
                 },
                 child: Text(
@@ -111,7 +125,7 @@ class _QuizAppState extends State<QuizApp> {
           Padding(
             padding: const EdgeInsets.all(9.0),
             child: SafeArea(
-              child: Row(children: scoreKeeper),
+              child: Row(),
             ),
           ),
         ],
