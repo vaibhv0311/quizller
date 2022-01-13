@@ -5,6 +5,27 @@ void main() {
   runApp(MyApp());
 }
 
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        backgroundColor: Colors.grey[900],
+        body: QuizApp(),
+      ),
+    );
+  }
+}
+
+class QuizApp extends StatefulWidget {
+  const QuizApp({Key? key}) : super(key: key);
+
+  @override
+  _QuizAppState createState() => _QuizAppState();
+}
+
 class _QuizAppState extends State<QuizApp> {
   Icon addIcon(Color color) {
     if (color == Colors.green) {
@@ -35,9 +56,9 @@ class _QuizAppState extends State<QuizApp> {
     }
   }
 
-  QuizBrain quizbrain = QuizBrain();
-
   List<Icon> scoreKeeper = [];
+
+  QuizBrain quizbrain = QuizBrain();
 
   @override
   Widget build(BuildContext context) {
@@ -113,25 +134,4 @@ class _QuizAppState extends State<QuizApp> {
       ),
     );
   }
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        backgroundColor: Colors.grey[900],
-        body: QuizApp(),
-      ),
-    );
-  }
-}
-
-class QuizApp extends StatefulWidget {
-  const QuizApp({Key? key}) : super(key: key);
-
-  @override
-  _QuizAppState createState() => _QuizAppState();
 }
