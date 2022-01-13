@@ -1,6 +1,6 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'question.dart';
 
 void main() {
   runApp(MyApp());
@@ -43,13 +43,18 @@ class _QuizAppState extends State<QuizApp> {
   }
 
   List<Icon> scoreKeeper = [];
-  List<String> questions = [
-    'You can lead a cow down stairs but not up stairs.',
-    'Approximately one quarter of human bones are in the feet.',
-    'A slug\'s blood is green.'
-  ];
+
   int questionNumber = 0;
 
+  List<Question> questionnaire = [
+    Question(
+        question: 'You can lead a cow down stairs but not up stairs.',
+        answer: false),
+    Question(
+        question: 'Approximately one quarter of human bones are in the feet.',
+        answer: true),
+    Question(question: 'A slug\'s blood is green.', answer: false)
+  ];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -63,7 +68,7 @@ class _QuizAppState extends State<QuizApp> {
               padding: const EdgeInsets.all(10.0),
               child: Center(
                 child: Text(
-                  questions[questionNumber],
+                  questionnaire[questionNumber].questionText,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 30,
@@ -82,6 +87,12 @@ class _QuizAppState extends State<QuizApp> {
                       MaterialStateProperty.all<Color>(Colors.green),
                 ),
                 onPressed: () {
+                  bool correctAns = true;
+                  if (questionnaire[questionNumber].answerText == correctAns) {
+                    print('Correct answer');
+                  } else {
+                    print('Wrong answer');
+                  }
                   setState(() {
                     questionNumber++;
                     scoreKeeper.add(addIcon(Colors.green));
@@ -105,11 +116,15 @@ class _QuizAppState extends State<QuizApp> {
                     backgroundColor:
                         MaterialStateProperty.all<Color>(Colors.red)),
                 onPressed: () {
+                  bool correctAns = false;
+                  if (questionnaire[questionNumber].answerText == correctAns) {
+                    print('Correct answer');
+                  } else {
+                    print('Wrong answer');
+                  }
                   setState(() {
-                    if (questionNumber < questions.length) {
-                      questionNumber++;
-                      scoreKeeper.add(addIcon(Colors.red));
-                    } else {}
+                    questionNumber++;
+                    scoreKeeper.add(addIcon(Colors.red));
                   });
                 },
                 child: Text(
