@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'quiz_brain.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
@@ -86,9 +87,9 @@ class _QuizAppState extends State<QuizApp> {
                   quizbrain.getQuestionText(),
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 30,
-                    color: Colors.white,
-                  ),
+                      fontSize: 30,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
                 ),
               ),
             ),
