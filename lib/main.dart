@@ -45,11 +45,6 @@ class _QuizAppState extends State<QuizApp> {
   void quizCheck(bool userPickedAnswer) {
     bool correctAns = quizbrain.getCorrectAnswer();
     setState(() {
-      //TODO: Step 4 - Use IF/ELSE to check if we've reached the end of the quiz. If true, execute Part A, B, C, D.
-      //TODO: Step 4 Part A - show an alert using rFlutter_alert (remember to read the docs for the package!)
-      //HINT! Step 4 Part B is in the quiz_brain.dart
-      //TODO: Step 4 Part C - reset the questionNumber,
-      //TODO: Step 4 Part D - empty out the scoreKeeper.
       if (quizbrain.isFinished()) {
         Alert(
                 context: context,
@@ -74,10 +69,6 @@ class _QuizAppState extends State<QuizApp> {
   List<Icon> scoreKeeper = [];
 
   QuizBrain quizbrain = QuizBrain();
-
-  // if(quizbrain.isFinished()==1){
-  // Alert(context: , title: "RFLUTTER", desc: "Flutter is awesome.").show();
-  // }
 
   @override
   Widget build(BuildContext context) {
